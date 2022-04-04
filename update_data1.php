@@ -11,63 +11,58 @@ if (!$hasil){
 
 
 
+
+
+<!-- bootstrap -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Masukkan data</title>
-    <style>
-      table {
-        border-collapse: collapse;
-      }
-      .form-input {
-        width: 250px;
-        height: 20px;
-        font-size: 13px;
-      }
-      .label {
-        font-size: 20px;
-        text-align: center;
-      }
-      button {
-        width: 80px;
-        height: 30px;
-        font-size: 14px;
-        cursor: pointer;
-      }
-    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <title>Form Update Data</title>
   </head>
   <body>
-    <center>
-      <h1><strong>Masukkan Data Siswa</strong></h1>
-      <table width="410" border="0" cellpadding="10">
-      <?php while($row = mysqli_fetch_array($hasil)) : ?>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow" style="background-color: #6f42c1">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="tampil-data.html">Tampil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tambah-data.html">Tambah</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn" style="background-color: white; color: #6e42c1; font-weight: bold" href="#Update">Update</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-        <form action="update_data2.php" method="post">
-            <input type="hidden" name="no_urut" class="form-input" value="<?php echo $row['no_urut'] ?>" required />
-          </tr>
-          <tr style="background-color: aqua">
-            <td class="label" style="text-align: left">Nama</td>
-            <td><input type="text" name="nama" class="form-input" value="<?php echo $row['nama'] ?>" required /></td>
-          </tr>
-          <tr style="background-color: aqua">
-            <td class="label" style="text-align: left">No Hp</td>
-            <td><input type="text" name="no_hp" class="form-input" value="<?php echo $row['no_hp'] ?>" required /></td>
-          </tr>
-          <tr style="background-color: aqua">
-            <td class="label" style="text-align: left">Asal Kota</td>
-            <td><input type="text" name="asal_kota" class="form-input" value="<?php echo $row['asal_kota'] ?>"required /></td>
-          </tr>
-          <tr style="background-color: aqua">
-            <td colspan="2" class="label" height="40px" style="text-align: right">
-              <button type="submit" name="submit">Send</button>
-            </td>
-          </tr>
-        </form>
-        <?php endwhile; ?>
-      </table>
-    </center>
+    <div class="container mt-4" id="Update">
+    <?php while($row = mysqli_fetch_array($hasil)) : ?>
+      <form action="update_data2.php" method="post">
+      <input type="hidden" name="no_urut" value="<?= $row["no_urut"]; ?>" />
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nama</label>
+          <input type="text" value="<?php echo $row['nama'] ?>" class="form-control" style="background-color: #6e42c113" name="nama" required />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">No HP</label>
+          <input type="text" value="<?php echo $row['no_hp'] ?>" class="form-control" style="background-color: #6e42c113" name="no_hp" required />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Asal Kota</label>
+          <input type="text" value="<?php echo $row['asal_kota'] ?>" class="form-control" style="background-color: #6e42c113" name="asal_kota" required />
+        </div>
+        <button type="submit" name="submit" class="btn" style="background-color: #6e42c1; color: white; font-weight: bold">Update</button>
+      </form>
+      <?php endwhile; ?>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
